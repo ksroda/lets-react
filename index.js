@@ -53,17 +53,17 @@ async function run () {
   const dir = (
     (redux && reactRouter && `${__dirname}/redux-router`) ||
     (redux && `${__dirname}/redux`) ||
-    (reactRouter && `${__dirname}/router`)
+    (reactRouter && `${__dirname}/router`) || ''
   )
 
-  shell.cp('-f', `${dir}/index.js`, `${config.directoryName}/app`)
-  shell.cp('-f', `${dir}/package.json`, config.directoryName)
+  if (dir) {
+    shell.cp('-f', `${dir}/index.js`, `${config.directoryName}/app`)
+    shell.cp('-f', `${dir}/package.json`, config.directoryName)
+  }
 
   if (redux) {
-    shell.mkdir(`${config.directoryName}/app/actions`)
-    shell.mkdir(`${config.directoryName}/app/reducers`)
-    shell.cp('-f', `${dir}/actions.js`, `${config.directoryName}/app/actions/`)
-    shell.cp('-f', `${dir}/reducers.js`, `${config.directoryName}/app/reducers/`)
+    shell.cp('-rf', `${__dirname}/redux/actions`, `${config.directoryName}/app`)
+    shell.cp('-rf', `${__dirname}/redux/reducers`, `${config.directoryName}/app`)
   }
 }
 
