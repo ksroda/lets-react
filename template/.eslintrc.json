@@ -1,0 +1,10 @@
+{
+    "extends": "airbnb",
+    "rules": {
+        "semi": ["error", "never"],
+        "space-before-function-paren": ["error", "always"],
+        "linebreak-style": 0,
+        "comma-dangle": 0,
+        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+    }
+}
