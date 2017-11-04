@@ -1,9 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import Menu from './components/Menu/Menu'
+import Home from './views/Home/Home'
 
 ReactDOM.render(
-  <Menu />,
+  <Home />,
   document.getElementById('app')
 )
