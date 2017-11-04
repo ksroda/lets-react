@@ -55,16 +55,15 @@ async function run () {
     (redux && `${__dirname}/redux`) ||
     (reactRouter && `${__dirname}/router`)
   )
+
+  spawnSync('cp', ['-f', `${dir}/index.js`, `${config.directoryName}/app`])
+  spawnSync('cp', ['-f', `${dir}/package.json`, config.directoryName])
+
   if (redux) {
-    spawnSync('cp', ['-f', `${dir}/index.js`, `${config.directoryName}/app`])
     spawnSync('mkdir', [`${config.directoryName}/app/actions`])
     spawnSync('mkdir', [`${config.directoryName}/app/reducers`])
     spawnSync('cp', ['-f', `${dir}/actions.js`, `${config.directoryName}/app/actions/`])
     spawnSync('cp', ['-f', `${dir}/reducers.js`, `${config.directoryName}/app/reducers/`])
-    spawnSync('cp', ['-f', `${dir}/package.json`, config.directoryName])
-  } else if (reactRouter) {
-    spawnSync('cp', ['-f', `${dir}/index.js`, `${config.directoryName}/app`])
-    spawnSync('cp', ['-f', `${dir}/package.json`, config.directoryName])
   }
 }
 
