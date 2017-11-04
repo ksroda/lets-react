@@ -5,5 +5,5 @@ import Menu from './components/Menu/Menu'
 
 ReactDOM.render(
   <Menu />,
-  document.getElementById('app') // eslint-disable-line
+  document.getElementById('app')
 )

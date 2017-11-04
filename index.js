@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const { spawnSync, execSync } = require('child_process')
+const { spawnSync } = require('child_process')
 
 if (!process.argv[2]) {
   console.error('\x1b[31m%s\x1b[0m', 'Directory name required:\n$ lets-react [directory-name]')
@@ -11,6 +11,7 @@ let step = 0
 const config = {
   directoryName: process.argv[2]
 }
+const templateDirectory = `${__dirname}/template`
 
 const { status } = spawnSync('test', ['-d', config.directoryName])
 if (status === 0) {
@@ -49,8 +50,15 @@ async function run () {
   console.log(config)
   process.stdin.destroy()
 
-  execSync(`cp -rf template ${config.directoryName}`)
-  console.log('\x1b[32m%s\x1b[0m', 'Success')
+  const { directoryName, redux, reactRouter } = config
+  spawnSync('cp', ['-rf', templateDirectory, config.directoryName])
+  if (redux) {
+    // spawnSync('cp', ['-rf', 'template', config.directoryName])
+  }
+
+  if (reactRouter) {
+
+  }
 }
 
 run()
