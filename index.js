@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const { spawnSync } = require('child_process')
+const shell = require('shelljs')
 
 if (!process.argv[2]) {
   console.error('\x1b[31m%s\x1b[0m', 'Directory name required:\n$ lets-react [directory-name]')
@@ -12,8 +12,8 @@ const config = {
   directoryName: process.argv[2]
 }
 
-const { status } = spawnSync('test', ['-d', config.directoryName])
-if (status === 0) {
+const exists = shell.test('-d', config.directoryName)
+if (exists) {
   console.error('\x1b[31m%s\x1b[0m', 'Directory already exists')
   process.exit(1)
 }
@@ -49,21 +49,21 @@ async function run () {
   process.stdin.destroy()
 
   const { directoryName, redux, reactRouter } = config
-  spawnSync('cp', ['-rf', `${__dirname}/template`, config.directoryName])
+  shell.cp('-rf', `${__dirname}/template`, config.directoryName)
   const dir = (
     (redux && reactRouter && `${__dirname}/redux-router`) ||
     (redux && `${__dirname}/redux`) ||
     (reactRouter && `${__dirname}/router`)
   )
 
-  spawnSync('cp', ['-f', `${dir}/index.js`, `${config.directoryName}/app`])
-  spawnSync('cp', ['-f', `${dir}/package.json`, config.directoryName])
+  shell.cp('-f', `${dir}/index.js`, `${config.directoryName}/app`)
+  shell.cp('-f', `${dir}/package.json`, config.directoryName)
 
   if (redux) {
-    spawnSync('mkdir', [`${config.directoryName}/app/actions`])
-    spawnSync('mkdir', [`${config.directoryName}/app/reducers`])
-    spawnSync('cp', ['-f', `${dir}/actions.js`, `${config.directoryName}/app/actions/`])
-    spawnSync('cp', ['-f', `${dir}/reducers.js`, `${config.directoryName}/app/reducers/`])
+    shell.mkdir(`${config.directoryName}/app/actions`)
+    shell.mkdir(`${config.directoryName}/app/reducers`)
+    shell.cp('-f', `${dir}/actions.js`, `${config.directoryName}/app/actions/`)
+    shell.cp('-f', `${dir}/reducers.js`, `${config.directoryName}/app/reducers/`)
   }
 }
 

@@ -2,7 +2,7 @@
   "name": "lets-react",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -13,11 +13,13 @@
   "bin": {
     "lets-react": "./index.js"
   },
-  "main" : "./index.js",
   "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/ksroda/lets-react/issues"
   },
-  "homepage": "https://github.com/ksroda/lets-react#readme"
+  "homepage": "https://github.com/ksroda/lets-react#readme",
+  "dependencies": {
+    "shelljs": "^0.7.8"
+  }
 }
