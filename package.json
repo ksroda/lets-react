@@ -1,0 +1,23 @@
+{
+  "name": "lets-react",
+  "version": "1.0.0",
+  "description": "��#\u0000 \u0000l\u0000e\u0000t\u0000s\u0000-\u0000r\u0000e\u0000a\u0000c\u0000t\u0000\r\u0000 \u0000",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ksroda/lets-react.git"
+  },
+  "bin": {
+    "lets-react": "./index.js"
+  },
+  "main" : "./index.js",
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ksroda/lets-react/issues"
+  },
+  "homepage": "https://github.com/ksroda/lets-react#readme"
+}
