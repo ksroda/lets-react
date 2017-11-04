@@ -14,5 +14,5 @@ ReactDOM.render(
       <Route path="/" component={Home} />
     </BrowserRouter>,
   </Provider>,
-  document.getElementById('app') // eslint-disable-line
+  document.getElementById('app')
 )

@@ -12,5 +12,5 @@ ReactDOM.render(
   <Provider store={store}>
     <Home />
   </Provider>,
-  document.getElementById('app') // eslint-disable-line
+  document.getElementById('app')
 )

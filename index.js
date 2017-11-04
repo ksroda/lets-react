@@ -11,7 +11,6 @@ let step = 0
 const config = {
   directoryName: process.argv[2]
 }
-const templateDirectory = `${__dirname}/template`
 
 const { status } = spawnSync('test', ['-d', config.directoryName])
 if (status === 0) {
@@ -47,17 +46,25 @@ async function run () {
   step = 2
   await readline()
 
-  console.log(config)
   process.stdin.destroy()
 
   const { directoryName, redux, reactRouter } = config
-  spawnSync('cp', ['-rf', templateDirectory, config.directoryName])
+  spawnSync('cp', ['-rf', `${__dirname}/template`, config.directoryName])
+  const dir = (
+    (redux && reactRouter && `${__dirname}/redux-router`) ||
+    (redux && `${__dirname}/redux`) ||
+    (reactRouter && `${__dirname}/router`)
+  )
   if (redux) {
-    // spawnSync('cp', ['-rf', 'template', config.directoryName])
-  }
-
-  if (reactRouter) {
-
+    spawnSync('cp', ['-f', `${dir}/index.js`, `${config.directoryName}/app`])
+    spawnSync('mkdir', [`${config.directoryName}/app/actions`])
+    spawnSync('mkdir', [`${config.directoryName}/app/reducers`])
+    spawnSync('cp', ['-f', `${dir}/actions.js`, `${config.directoryName}/app/actions/`])
+    spawnSync('cp', ['-f', `${dir}/reducers.js`, `${config.directoryName}/app/reducers/`])
+    spawnSync('cp', ['-f', `${dir}/package.json`, config.directoryName])
+  } else if (reactRouter) {
+    spawnSync('cp', ['-f', `${dir}/index.js`, `${config.directoryName}/app`])
+    spawnSync('cp', ['-f', `${dir}/package.json`, config.directoryName])
   }
 }
 

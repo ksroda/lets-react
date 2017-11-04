@@ -8,5 +8,5 @@ ReactDOM.render(
   <BrowserRouter>
     <Route path="/" component={Home} />
   </BrowserRouter>,
-  document.getElementById('app') // eslint-disable-line
+  document.getElementById('app')
 )
